@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Initializer : MonoBehaviour {
 	public int numberOfBaskets;
-	static List<GameObject> baskets;
+	static public List<GameObject> baskets;
 	public GameObject basketPrefab;
 	public float lowestBasketY;
 	public float spaceBetweenBaskets;
