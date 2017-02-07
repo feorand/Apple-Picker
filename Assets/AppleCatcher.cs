@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AppleCatcher : MonoBehaviour {
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	void OnCollisionEnter(Collision collision) {
-		Destroy(collision.gameObject);
+		var gameObject = collision.gameObject;
+		if (gameObject.name == "Apple(Clone)") {
+			Destroy (gameObject);
+		}
 	}
 }
