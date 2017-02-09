@@ -7,6 +7,8 @@ public class AppleCatcher : MonoBehaviour {
 		var gameObject = collision.gameObject;
 		if (gameObject.name == "Apple(Clone)") {
 			Destroy (gameObject);
+			ScoreCounter.Score += 10;
+			ScoreCounter.SetScore ();
 		}
 	}
 }
