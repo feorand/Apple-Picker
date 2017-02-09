@@ -12,6 +12,8 @@ public class ScoreCounter : MonoBehaviour {
 			score = value; 
 			if (score > highscore)
 				highscore = value;
+
+			PrintScore ();
 		}
 	}
 

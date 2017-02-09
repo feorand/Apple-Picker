@@ -12,7 +12,7 @@ public class Initializer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		SpawnBaskets (numberOfBaskets, lowestBasketY, spaceBetweenBaskets);
-
+		ScoreCounter.Score = 0;
 		//Cursor.visible = false;
 	}
 
