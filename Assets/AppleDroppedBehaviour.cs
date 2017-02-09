@@ -9,13 +9,13 @@ public class AppleDroppedBehaviour : MonoBehaviour {
 	void OnCollisionEnter(Collision collision) {
 		Destroy (collision.gameObject);
 
-		if (Initializer.baskets.Count > 0) {
-			var basket = Initializer.baskets [0];
+		if (Initializer.BasketsLeft > 0) {
+			var basket = GameObject.Find ("Basket(Clone)");
 			Destroy (basket);
-			Initializer.baskets.Remove (basket);
+			Initializer.BasketsLeft -= 1;
 		}
 
-		if (Initializer.baskets.Count == 0) {
+		if (Initializer.BasketsLeft == 0) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
 		}
 	}

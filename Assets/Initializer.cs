@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Initializer : MonoBehaviour {
 	public int numberOfBaskets;
-	static public List<GameObject> baskets;
+	static public int BasketsLeft;
 	public GameObject basketPrefab;
 	public float lowestBasketY;
 	public float spaceBetweenBaskets;
 
 	// Use this for initialization
 	void Start () {
+		BasketsLeft = numberOfBaskets;
 		SpawnBaskets (numberOfBaskets, lowestBasketY, spaceBetweenBaskets);
 		ScoreCounter.Score = 0;
-		//Cursor.visible = false;
+		Cursor.visible = false;
 	}
 
 	void MovePrefab(GameObject prefab, float y) {
@@ -24,10 +25,9 @@ public class Initializer : MonoBehaviour {
 
 	void SpawnBaskets(int number, float lowestPos, float spaceBetween) {
 		var nextY = lowestPos;
-		baskets = new List<GameObject>();
 		for (var i = 0; i < number; i++) {
 			MovePrefab(basketPrefab, nextY);
-			baskets.Add(Instantiate(basketPrefab));
+			Instantiate (basketPrefab);
 			nextY += spaceBetween;
 		}
 	}
