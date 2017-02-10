@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Initializer : MonoBehaviour {
 	public int numberOfBaskets;
@@ -34,5 +35,22 @@ public class Initializer : MonoBehaviour {
 	public void OnAppleCatch(GameObject apple) {
 		Destroy (apple);
 		ScoreCounter.Score += 10;
+	}
+
+	public void OnAppleDrop() {
+		var apples = GameObject.FindGameObjectsWithTag ("Apple");
+		foreach (var apple in apples) {
+			Destroy (apple);
+		}
+
+		if (BasketsLeft > 0) {
+			var basket = GameObject.Find ("Basket(Clone)");
+			Destroy (basket);
+			BasketsLeft -= 1;
+		}
+
+		if (BasketsLeft == 0) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
+		}
 	}
 }
