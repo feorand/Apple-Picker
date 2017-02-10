@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class AppleDroppedBehaviour : MonoBehaviour {
+public class AppleDropNotifier : MonoBehaviour {
 	public UnityEvent AppleDropped = new UnityEvent();
 
 	void OnCollisionEnter(Collision collision) {
