@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class AppleDroppedBehaviour : MonoBehaviour {
 	public Initializer initializer;
 
 	void OnCollisionEnter(Collision collision) {
-		Destroy (collision.gameObject);
-
+		var apples = GameObject.FindGameObjectsWithTag ("Apple");
+		foreach (var apple in apples) {
+			Destroy (apple);
+		}
+		
 		if (Initializer.BasketsLeft > 0) {
 			var basket = GameObject.Find ("Basket(Clone)");
 			Destroy (basket);
