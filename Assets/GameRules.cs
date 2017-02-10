@@ -32,8 +32,8 @@ public class GameRules : MonoBehaviour {
 		}
 	}
 
-	public void OnAppleCatch(GameObject apple) {
-		Destroy (apple);
+	public void OnAppleCatch() {
+		//Destroy (apple);
 		ScoreCounter.Score += 10;
 	}
 

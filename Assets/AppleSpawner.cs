@@ -17,11 +17,11 @@ public class AppleSpawner : MonoBehaviour {
 	}
 
 	void spawnApple(GameObject applePrefab) {
-		var initializer = gameMaster.GetComponent<GameRules> ();
+		//var gameRules = gameMaster.GetComponent<GameRules> ();
 
 		var apple = Instantiate(applePrefab) as GameObject;
 		apple.transform.position = transform.position;
-		var appleCatcher = apple.GetComponent<AppleCatchNotifier> ();
-		appleCatcher.appleCaught.AddListener (initializer.OnAppleCatch);
+		//var appleCatcher = apple.GetComponent<AppleCatchNotifier> ();
+		//appleCatcher.appleCaught.AddListener (gameRules.OnAppleCatch);
 	}
 }

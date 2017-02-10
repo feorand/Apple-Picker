@@ -3,15 +3,13 @@ using UnityEngine.Events;
 using System;
 
 public class AppleCatchNotifier : MonoBehaviour {
-	[Serializable]
-	public class AppleCaught: UnityEvent<GameObject> {}
-
-	public AppleCaught appleCaught = new AppleCaught();
+	public UnityEvent appleCaught = new UnityEvent();
 
 	void OnCollisionEnter(Collision collision) {
 		var collisionObject = collision.gameObject;
-		if (collisionObject.tag == "Basket") {
-			appleCaught.Invoke (gameObject);
+		if (collisionObject.tag == "Apple") {
+			Destroy (collisionObject);
+			appleCaught.Invoke ();
 		}
 	}
 }
