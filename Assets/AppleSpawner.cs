@@ -2,26 +2,14 @@
 
 public class AppleSpawner : MonoBehaviour {
 	public GameObject applePrefab;
-	public GameObject gameMaster;
-
 	public float timeBetweenApples;
-	float timeUntilNextApple;
 
-	void Update () {
-		if (timeUntilNextApple <= 0) { 
-			spawnApple(applePrefab);
-			timeUntilNextApple = timeBetweenApples;
-		}
-
-		timeUntilNextApple -= Time.deltaTime;
+	void Start() {
+		InvokeRepeating ("spawnApple", 0, timeBetweenApples);
 	}
 
-	void spawnApple(GameObject applePrefab) {
-		//var gameRules = gameMaster.GetComponent<GameRules> ();
-
+	void spawnApple() {
 		var apple = Instantiate(applePrefab) as GameObject;
 		apple.transform.position = transform.position;
-		//var appleCatcher = apple.GetComponent<AppleCatchNotifier> ();
-		//appleCatcher.appleCaught.AddListener (gameRules.OnAppleCatch);
 	}
 }

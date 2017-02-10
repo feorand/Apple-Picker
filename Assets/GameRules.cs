@@ -33,7 +33,6 @@ public class GameRules : MonoBehaviour {
 	}
 
 	public void OnAppleCatch() {
-		//Destroy (apple);
 		ScoreCounter.Score += 10;
 	}
 
