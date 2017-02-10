@@ -5,7 +5,7 @@ public class AppleDropNotifier : MonoBehaviour {
 	public UnityEvent AppleDropped = new UnityEvent();
 
 	void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.name == "Apple(Clone)") {
+		if (collision.gameObject.tag == "Apple") {
 			AppleDropped.Invoke ();
 		}
 	}
