@@ -9,7 +9,6 @@ public class Initializer : MonoBehaviour {
 	public float lowestBasketY;
 	public float spaceBetweenBaskets;
 
-	// Use this for initialization
 	void Start () {
 		BasketsLeft = numberOfBaskets;
 		SpawnBaskets (numberOfBaskets, lowestBasketY, spaceBetweenBaskets);
@@ -30,5 +29,10 @@ public class Initializer : MonoBehaviour {
 			Instantiate (basketPrefab);
 			nextY += spaceBetween;
 		}
+	}
+
+	public void OnAppleCatch(GameObject apple) {
+		Destroy (apple);
+		ScoreCounter.Score += 10;
 	}
 }

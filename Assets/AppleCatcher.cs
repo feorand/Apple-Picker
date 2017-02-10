@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using System;
 
 public class AppleCatcher : MonoBehaviour {
-	void OnCollisionEnter(Collision collision) {
-		var gameObject = collision.gameObject;
+	[Serializable]
+	public class AppleCaught: UnityEvent<GameObject> {}
 
-		if (gameObject.name == "Apple(Clone)") {
-			Destroy (gameObject);
-			ScoreCounter.Score += 10;
+	public AppleCaught appleCaught = new AppleCaught();
+
+	void OnCollisionEnter(Collision collision) {
+		var collisionObject = collision.gameObject;
+		if (collisionObject.name == "Basket(Clone)") {
+			appleCaught.Invoke (gameObject);
 		}
 	}
 }

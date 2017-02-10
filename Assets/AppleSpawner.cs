@@ -2,6 +2,7 @@
 
 public class AppleSpawner : MonoBehaviour {
 	public GameObject applePrefab;
+	public GameObject GameMaster;
 
 	public float timeBetweenApples;
 	float timeUntilNextApple;
@@ -16,8 +17,12 @@ public class AppleSpawner : MonoBehaviour {
 		timeUntilNextApple -= Time.deltaTime;
 	}
 
-	void spawnApple(GameObject apple) {
+	void spawnApple(GameObject applePrefab) {
+		var initializer = GameMaster.GetComponent<Initializer> ();
+
+		var apple = Instantiate(applePrefab) as GameObject;
 		apple.transform.position = transform.position;
-		Instantiate(apple);
+		var appleCatcher = apple.GetComponent<AppleCatcher> ();
+		appleCatcher.appleCaught.AddListener (initializer.OnAppleCatch);
 	}
 }
