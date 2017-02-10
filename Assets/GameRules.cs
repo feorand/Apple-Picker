@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
 public class GameRules : MonoBehaviour {
+	public int numberOfBaskets;
+
 	static int basketsLeft;
 	static int highscore;
 	static int score;
-
-	public int numberOfBaskets;
 
 	void Start() {
 		basketsLeft = numberOfBaskets;
