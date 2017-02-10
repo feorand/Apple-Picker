@@ -17,7 +17,7 @@ public class AppleSpawner : MonoBehaviour {
 	}
 
 	void spawnApple(GameObject applePrefab) {
-		var initializer = gameMaster.GetComponent<Initializer> ();
+		var initializer = gameMaster.GetComponent<GameRules> ();
 
 		var apple = Instantiate(applePrefab) as GameObject;
 		apple.transform.position = transform.position;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Initializer : MonoBehaviour {
+public class GameRules : MonoBehaviour {
 	public int numberOfBaskets;
 	static public int BasketsLeft;
 	public GameObject basketPrefab;
