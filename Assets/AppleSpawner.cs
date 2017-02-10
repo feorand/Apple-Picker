@@ -2,12 +2,16 @@
 
 public class AppleSpawner : MonoBehaviour {
 	public GameObject applePrefab;
-	public GameObject GameMaster;
 
 	public float timeBetweenApples;
 	float timeUntilNextApple;
 
-	// Update is called once per frame
+	GameObject tree;
+
+	void Start() {
+		tree = GameObject.FindWithTag ("Tree");
+	}
+
 	void Update () {
 		if (timeUntilNextApple <= 0) { 
 			spawnApple(applePrefab);
@@ -18,11 +22,11 @@ public class AppleSpawner : MonoBehaviour {
 	}
 
 	void spawnApple(GameObject applePrefab) {
-		var initializer = GameMaster.GetComponent<Initializer> ();
+		var initializer = GetComponent<Initializer> ();
 
 		var apple = Instantiate(applePrefab) as GameObject;
-		apple.transform.position = transform.position;
-		var appleCatcher = apple.GetComponent<AppleCatcher> ();
+		apple.transform.position = tree.transform.position;
+		var appleCatcher = apple.GetComponent<AppleCatchNotifier> ();
 		appleCatcher.appleCaught.AddListener (initializer.OnAppleCatch);
 	}
 }

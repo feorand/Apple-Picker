@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-public class AppleCatcher : MonoBehaviour {
+public class AppleCatchNotifier : MonoBehaviour {
 	[Serializable]
 	public class AppleCaught: UnityEvent<GameObject> {}
 
@@ -12,7 +10,7 @@ public class AppleCatcher : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		var collisionObject = collision.gameObject;
-		if (collisionObject.name == "Basket(Clone)") {
+		if (collisionObject.tag == "Basket") {
 			appleCaught.Invoke (gameObject);
 		}
 	}
