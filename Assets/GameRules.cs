@@ -1,19 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
-public class GameRules : MonoBehaviour {
-	public int numberOfBaskets;
-
-	static int basketsLeft;
+public class GameRules : MonoBehaviour
+{
+	int basketsLeft;
 	static int highscore;
 	static int score;
 
-	void Start() {
-		basketsLeft = numberOfBaskets;
+	[System.Serializable]
+	public class ScoreUpdatedEvent : UnityEvent<int, int> { }
+
+	public ScoreUpdatedEvent ScoreUpdated;
+
+	void Awake()
+	{
+		basketsLeft = GetComponent<BasketSpawner>().numberOfBaskets;
 		score = 0;
+	}
+
+	void Start()
+	{
+		var updater = GameObject.Find("ScoreText").GetComponent<ScoreTextUpdater>();
+		ScoreUpdated = new ScoreUpdatedEvent();
+		ScoreUpdated.AddListener(updater.OnScoreChanged);
+		ScoreUpdated.Invoke(score, highscore);
 	}
 
 	public void OnAppleCatch() {
@@ -21,25 +32,23 @@ public class GameRules : MonoBehaviour {
 		if (score > highscore)
 			highscore = score;
 
-		GameObject.Find ("ScoreText")
-			.GetComponent<ScoreTextUpdater> ()
-			.OnScoreChanged (score, highscore);
+		ScoreUpdated.Invoke(score, highscore);
 	}
 
 	public void OnAppleDrop() {
-		var apples = GameObject.FindGameObjectsWithTag ("Apple");
+		var apples = GameObject.FindGameObjectsWithTag("Apple");
 		foreach (var apple in apples) {
 			Destroy (apple);
 		}
 
 		if (basketsLeft > 0) {
-			var basket = GameObject.Find ("Basket(Clone)");
+			var basket = GameObject.Find("Basket(Clone)");
 			Destroy (basket);
 			basketsLeft -= 1;
 		}
 
 		if (basketsLeft == 0) {
-			SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 }

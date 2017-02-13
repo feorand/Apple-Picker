@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BasketMover : MonoBehaviour {
 	void Update () {
@@ -8,8 +6,8 @@ public class BasketMover : MonoBehaviour {
 		screenMousePosition.z = Camera.main.transform.position.z;
 
 		var mousePosition = Camera.main.ScreenToWorldPoint(screenMousePosition);
-		var transition = new Vector3 (mousePosition.x - transform.position.x, 0, 0);
+		var transition = new Vector3(mousePosition.x - transform.position.x, 0, 0);
 
-		transform.Translate (transition);
+		transform.Translate(transition);
 	}
 }

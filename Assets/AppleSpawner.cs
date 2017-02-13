@@ -5,7 +5,7 @@ public class AppleSpawner : MonoBehaviour {
 	public float timeBetweenApples;
 
 	void Start() {
-		InvokeRepeating ("spawnApple", 0, timeBetweenApples);
+		InvokeRepeating("spawnApple", 0, timeBetweenApples);
 	}
 
 	void spawnApple() {
